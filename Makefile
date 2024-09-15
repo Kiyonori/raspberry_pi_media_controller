@@ -10,4 +10,4 @@ up:
 
 purge:
 	docker-compose down
-	docker image rm hello-python-python:latest
+	docker image rm raspberry-pi-media-controller-python:latest

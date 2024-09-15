@@ -1,7 +1,21 @@
 import math
 import time
-import board
-import busio
+
+try:
+    import board
+    import busio
+except ImportError:
+    print("Raspberry Piのハードウェアアクセスはサポートされていません。モックを使用します。")
+    # ここでモックを作成する
+    class MockBoard:
+        SCL = None
+        SDA = None
+    class MockBusio:
+        def I2C(self, scl, sda):
+            return None
+    board = MockBoard()
+    busio = MockBusio()
+
 import adafruit_ads1x15.ads1115 as ADS
 from adafruit_ads1x15.ads1x15 import Mode
 from adafruit_ads1x15.analog_in import AnalogIn

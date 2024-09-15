@@ -40,9 +40,9 @@ ads.mode = Mode.CONTINUOUS
 ads.data_rate = RATE
 
 def getRMS():
-    voltage_ch0 : float = 0
+    voltage_ch0 : float
     sum_ch0 : float = 0
-    voltage_ch1 : float = 0
+    voltage_ch1 : float
     sum_ch1 : float = 0
 
     counter= 0

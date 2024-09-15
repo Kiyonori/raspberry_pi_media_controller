@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  python:
+    build:
+      context: .
+      args:
+        APP_USER_ID: ${APP_USER_ID}
+        APP_USER_NAME: ${APP_USER_NAME}
+    volumes:
+      - ./app:/home/${APP_USER_NAME}
+    restart: unless-stopped

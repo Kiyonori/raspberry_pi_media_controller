@@ -1,20 +1,7 @@
 import math
 import time
-
-try:
-    import board
-    import busio
-except ImportError:
-    print("Raspberry Piのハードウェアアクセスはサポートされていません。モックを使用します。")
-    # ここでモックを作成する
-    class MockBoard:
-        SCL = None
-        SDA = None
-    class MockBusio:
-        def I2C(self, scl, sda):
-            return None
-    board = MockBoard()
-    busio = MockBusio()
+import board
+import busio
 
 import adafruit_ads1x15.ads1115 as ADS
 from adafruit_ads1x15.ads1x15 import Mode
@@ -102,6 +89,6 @@ while True:
 
     print ('日付: %s 時刻: %s 全電力: %.2fw(%.2fwh) 電力ch0: %.2fw(%.2fwh) 電力ch1 %.2fw(%.2fwh)' % (today,nowtime,watt_ch0+watt_ch1,total_watth_ch0+total_watth_ch1,watt_ch0,total_watth_ch0,watt_ch1,total_watth_ch1))
 
-    with open('/home/pi/Desktop/homepower/homepower_%s.csv' % (file_end),'a') as f:
-        writer = csv.writer(f)
-        writer.writerow([today,nowtime,watt_ch0+watt_ch1,total_watth_ch0+total_watth_ch1,watt_ch0,total_watth_ch0,watt_ch1,total_watth_ch1])
+    # with open('homepower_%s.csv' % (file_end),'a') as f:
+    #     writer = csv.writer(f)
+    #     writer.writerow([today,nowtime,watt_ch0+watt_ch1,total_watth_ch0+total_watth_ch1,watt_ch0,total_watth_ch0,watt_ch1,total_watth_ch1])

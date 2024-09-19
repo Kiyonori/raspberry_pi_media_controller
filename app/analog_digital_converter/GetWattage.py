@@ -43,3 +43,6 @@ class GetWattage:
     """電流計 (SCT013-030) 電流比1800:1"""
 
     ONE_HOUR_SECONDS: int = 3600
+
+    SUPPLY_VOLTAGE = 100
+    """電流計 (SCT013-030) が測定している電源の供給電圧"""

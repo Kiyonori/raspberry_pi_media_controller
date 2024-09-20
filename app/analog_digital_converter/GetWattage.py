@@ -1,7 +1,6 @@
 import adafruit_ads1x15.ads1115 as ads1115
 import analog_digital_converter.GetRMS as GetRMS
 import analog_digital_converter.GetChannel as GetChannel
-from adafruit_ads1x15.ads1x15 import Mode
 from adafruit_ads1x15.analog_in import AnalogIn
 import time
 
@@ -9,8 +8,6 @@ import time
 def execute(ads: ads1115.ADS1115,
             analog_pin_num_1: int,
             analog_pin_num_2: int,
-            conversion_mode: int = Mode.CONTINUOUS,
-            samples_per_second: int = 860,
             ) -> float:
     """
     消費電力を測定
@@ -20,8 +17,6 @@ def execute(ads: ads1115.ADS1115,
         ads,
         analog_pin_num_1,
         analog_pin_num_2,
-        conversion_mode,
-        samples_per_second,
     )
 
     start_timestamp: float = time.time()

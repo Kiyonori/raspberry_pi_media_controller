@@ -11,8 +11,9 @@ def execute(
         conversion_mode: int = Mode.CONTINUOUS,
         samples_per_second: int = 860,
 ) -> adafruit_ads1x15.analog_in.AnalogIn:
-    ads.mode = conversion_mode
-    ads.data_rate = samples_per_second
+    # FIXME 繰り返し処理の中で、何度も代入すると正しい値が取得出来ない
+    # ads.mode = conversion_mode
+    # ads.data_rate = samples_per_second
 
     channel = AnalogIn(
         ads,

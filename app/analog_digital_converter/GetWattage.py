@@ -2,7 +2,6 @@ import adafruit_ads1x15.ads1115 as ads1115
 import analog_digital_converter.GetRMS as GetRMS
 import analog_digital_converter.GetChannel as GetChannel
 from adafruit_ads1x15.analog_in import AnalogIn
-import time
 
 
 def execute(ads: ads1115.ADS1115,
@@ -19,13 +18,9 @@ def execute(ads: ads1115.ADS1115,
         analog_pin_num_2,
     )
 
-    start_timestamp: float = time.time()
     rms: float = GetRMS.execute(channel)
-    elapsed_seconds: float = time.time() - start_timestamp
-
     current: float = (rms / GetWattage.INTERNAL_RESISTANCE) * GetWattage.CURRENT_RATIO
-
-    wattage = (current * 100) * elapsed_seconds / GetWattage.ONE_HOUR_SECONDS
+    wattage: float = current * 100
 
     return wattage
 

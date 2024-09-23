@@ -8,5 +8,5 @@ services:
         APP_USER_ID: ${APP_USER_ID}
         APP_USER_NAME: ${APP_USER_NAME}
     volumes:
-      - ../raspberry-pi-media-controller:/home/${APP_USER_NAME}/raspberry-pi-media-controller
+      - ../:/home/${APP_USER_NAME}/raspberry-pi-media-controller
     restart: unless-stopped

@@ -12,11 +12,15 @@ binho-host-adapter==0.1.6
 certifi==2024.8.30
 distlib==0.3.8
 filelock==3.16.1
+iniconfig==2.0.0
+packaging==24.1
 pigpio==1.78
 pipenv==2024.0.2
 platformdirs==4.3.6
+pluggy==1.5.0
 pyftdi==0.55.4
 pyserial==3.5
+pytest==8.3.3
 python-dotenv==1.0.1
 pyusb==1.2.1
 rpi-ws281x==5.0.0

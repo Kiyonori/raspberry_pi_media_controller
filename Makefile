@@ -5,10 +5,10 @@ up:
 		echo "containers/.env を作成しました。"; \
 	fi
 
-	# raspberry-pi-media-controller/.env が存在しない場合は raspberry-pi-media-controller/.env.example をコピーする
-	if [ ! -e raspberry-pi-media-controller/.env ]; then \
-		cp raspberry-pi-media-controller/.env.example raspberry-pi-media-controller/.env; \
-		echo "raspberry-pi-media-controller/.env を作成しました。"; \
+	# raspberry_pi_media_controller/.env が存在しない場合は raspberry_pi_media_controller/.env.example をコピーする
+	if [ ! -e raspberry_pi_media_controller/.env ]; then \
+		cp raspberry_pi_media_controller/.env.example raspberry_pi_media_controller/.env; \
+		echo "raspberry_pi_media_controller/.env を作成しました。"; \
 	fi
 
 	cd containers \

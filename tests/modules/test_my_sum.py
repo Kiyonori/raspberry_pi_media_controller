@@ -1,4 +1,4 @@
-from raspberry-pi-media-controller.modules.my_sum import my_sum
+from modules.my_sum import my_sum
 
 
 def test_my_sum() -> None:

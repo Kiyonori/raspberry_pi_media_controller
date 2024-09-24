@@ -13,7 +13,9 @@ up:
 
 	cd containers \
 	&& docker-compose build \
-	&& docker-compose up -d
+	&& docker-compose up -d \
+	&& docker-compose exec python bash -c "pip install -r requirements.txt" \
+	&& docker-compose exec python bash -c "pipenv install -d pytest"
 purge:
 	cd containers \
 	&& docker-compose down \

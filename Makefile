@@ -1,19 +1,22 @@
 up:
-	# .env が存在しない場合は .env.example をコピーする
-	if [ ! -e .env ]; then \
-		cp .env.example .env; \
-		echo ".env を作成しました。"; \
+	# containers/.env が存在しない場合は containers/.env.example をコピーする
+	if [ ! -e containers/.env ]; then \
+		cp containers/.env.example containers/.env; \
+		echo "containers/.env を作成しました。"; \
 	fi
 
-	docker-compose build \
-	&& docker-compose up -d
-
-	# app/.env が存在しない場合は app/.env.example をコピーする
-	if [ ! -e app/.env ]; then \
-		cp app/.env.example app/.env; \
-		echo "app/.env を作成しました。"; \
+	# raspberry_pi_media_controller/.env が存在しない場合は raspberry_pi_media_controller/.env.example をコピーする
+	if [ ! -e raspberry_pi_media_controller/.env ]; then \
+		cp raspberry_pi_media_controller/.env.example raspberry_pi_media_controller/.env; \
+		echo "raspberry_pi_media_controller/.env を作成しました。"; \
 	fi
 
+	cd containers \
+	&& docker-compose build \
+	&& docker-compose up -d \
+	&& docker-compose exec python bash -c "pip install -r requirements.txt" \
+	&& docker-compose exec python bash -c "pipenv install -d pytest"
 purge:
-	docker-compose down
-	docker image rm raspberry-pi-media-controller-python:latest
+	cd containers \
+	&& docker-compose down \
+	&& docker image rm raspberry-pi-media-controller-python:latest

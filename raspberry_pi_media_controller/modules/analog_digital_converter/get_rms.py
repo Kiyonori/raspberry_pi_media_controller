@@ -7,7 +7,7 @@ def get_rms(channel: AnalogIn) -> float:
     """
     A/DコンバーターからRMS値を取得する
 
-    :param channel: アナログ入力のピン番号 0, 1, 2, 3
+    :param channel: アナログ入力のチャネル
     :type channel: AnalogIn
     :return RMS値 (電圧V)
     :rtype float

@@ -18,5 +18,5 @@ class DisplayPowerStatusEnum(Enum):
     DISCONNECTED = 'DISCONNECTED'
     """電源に接続されていません"""
 
-    UNKNOWN = 'UNKNOWN'
-    """電源の状態が不明です"""
+    TROUBLE = 'TROUBLE'
+    """機器の故障"""

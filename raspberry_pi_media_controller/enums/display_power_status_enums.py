@@ -18,5 +18,8 @@ class DisplayPowerStatusEnum(Enum):
     DISCONNECTED = 'DISCONNECTED'
     """電源に接続されていません"""
 
+    GLITCHED = 'GLITCHED'
+    """消費電力を検知したものの、ノイズと判定した"""
+
     TROUBLE = 'TROUBLE'
     """機器の故障"""

@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 @dataclass
 class DisplayPowerConfigData:
-    disconnected_wattage: float
+    unplugged_wattage: float
     """消費電力がこの値以下は、電源プラグが接続されていません"""
 
     powered_off_and_signal_can_not_be_received_wattages: list[float]
@@ -24,7 +24,7 @@ class DisplayPowerConfigData:
         # TODO これは DTO に書くべき実装じゃない
         #  DTO はロジックを含んではいけない
         load_dotenv()
-        self.disconnected_wattage = float(os.environ.get('DISPLAY_POWER_STATUS_PLUG_DISCONNECTED_WATTAGE'))
+        self.unplugged_wattage = float(os.environ.get('DISPLAY_POWER_STATUS_PLUG_UNPLUGGED_WATTAGE'))
         self.powered_off_and_signal_can_not_be_received_wattages = [
             float(
                 os

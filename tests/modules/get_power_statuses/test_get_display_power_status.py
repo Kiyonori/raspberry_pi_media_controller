@@ -14,12 +14,12 @@ from raspberry_pi_media_controller.modules.get_power_statuses.get_display_power_
         [0, 0, 0, 0],
     ]
 )
-def test_get_display_power_status_は意図したとおり_DISCONNECTED_を返すこと(
+def test_get_display_power_status_は意図したとおり_UNPLUGGED_を返すこと(
         wattages: list[float],
 ):
     result = get_display_power_status(wattages)
 
-    assert result is DisplayPowerStatusEnum.DISCONNECTED
+    assert result is DisplayPowerStatusEnum.UNPLUGGED
 
 
 @pytest.mark.parametrize(

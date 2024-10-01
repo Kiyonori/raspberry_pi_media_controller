@@ -26,8 +26,11 @@ def get_display_power_status(wattages: list[float]) -> DisplayPowerStatusEnum:
         elif wattage >= 55.0 and wattage <= 160.0:
             current_status = DisplayPowerStatusEnum.POWERED_ON
 
-        else:
+        elif wattage > 160.0:
             return DisplayPowerStatusEnum.TROUBLE
+
+        else:
+            return DisplayPowerStatusEnum.GLITCHED
 
         if previous_status is None:
             previous_status = current_status

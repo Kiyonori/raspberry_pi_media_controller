@@ -15,7 +15,7 @@ def get_display_power_status(wattages: list[float]) -> DisplayPowerStatusEnum:
 
     for wattage in wattages:
         if wattage <= 0.4:
-            current_status = DisplayPowerStatusEnum.DISCONNECTED
+            current_status = DisplayPowerStatusEnum.UNPLUGGED
 
         elif wattage >= 2.4 and wattage <= 3.0:
             current_status = DisplayPowerStatusEnum.POWERED_OFF_AND_SIGNAL_CAN_NOT_BE_RECEIVED

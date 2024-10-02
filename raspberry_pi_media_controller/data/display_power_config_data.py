@@ -1,6 +1,4 @@
-import os
 from dataclasses import dataclass
-from dotenv import load_dotenv
 
 
 @dataclass
@@ -20,25 +18,16 @@ class DisplayPowerConfigData:
     trouble_wattage: float
     """消費電力がこの値以上の場合、ディスプレイが故障しています"""
 
-    def __init__(self):
-        # TODO これは DTO に書くべき実装じゃない
-        #  DTO はロジックを含んではいけない
-        load_dotenv()
-        self.unplugged_wattage = float(os.environ.get('DISPLAY_POWER_STATUS_PLUG_UNPLUGGED_WATTAGE'))
-        self.powered_off_and_signal_can_not_be_received_wattages = [
-            float(
-                os
-                .environ
-                .get('DISPLAY_POWER_STATUS_POWERED_OFF_AND_SIGNAL_CAN_NOT_BE_RECEIVED_WATTAGES')
-                .split(',')[0]
-            ),
-            float(
-                os
-                .environ
-                .get('DISPLAY_POWER_STATUS_POWERED_OFF_AND_SIGNAL_CAN_NOT_BE_RECEIVED_WATTAGES')
-                .split(',')[1]
-            ),
-        ]
-        self.powered_off_and_signal_can_be_received_wattages = []
-        self.powered_on_wattages = []
-        self.trouble_wattage = 0.0
+    def __init__(
+            self,
+            unplugged_wattage: float,
+            powered_off_and_signal_can_not_be_received_wattages: list[float],
+            powered_off_and_signal_can_be_received_wattages: list[float],
+            powered_on_wattages: list[float],
+            trouble_wattage: float,
+    ):
+        self.unplugged_wattage = unplugged_wattage
+        self.powered_off_and_signal_can_not_be_received_wattages = powered_off_and_signal_can_not_be_received_wattages
+        self.powered_off_and_signal_can_be_received_wattages = powered_off_and_signal_can_be_received_wattages
+        self.powered_on_wattages = powered_on_wattages
+        self.trouble_wattage = trouble_wattage

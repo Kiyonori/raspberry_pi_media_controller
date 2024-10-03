@@ -76,7 +76,7 @@ def test_get_display_power_status_は意図したとおり_POWERED_ON_を返す�
 @pytest.mark.parametrize(
     "wattages",
     [
-        [160, 160.1, 160, 160],
+        [60, 180.0, 61, 120],
         [0.3, 200.0, 0.4, 18.0],
     ]
 )

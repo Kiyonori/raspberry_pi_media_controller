@@ -1,0 +1,61 @@
+import os
+from dotenv import load_dotenv
+from raspberry_pi_media_controller.data.media_player_power_config_data \
+    import MediaPlayerPowerConfigData
+
+
+def get_media_player_power_config():
+    """
+    メディアプレイヤーの消費電力に関する設定値を参照する
+    """
+
+    load_dotenv()
+
+    unplugged_wattage = float(
+        os
+        .environ
+        .get('MEDIA_PLAYER_POWER_SUPPLY_STATUS_UNPLUGGED')
+    )
+
+    powered_off_and_signal_can_be_received_wattages = [
+        float(
+            os
+            .environ
+            .get('MEDIA_PLAYER_POWER_SUPPLY_STATUS_SIGNAL_CAN_BE_RECEIVED')
+            .split(',')[0]
+        ),
+        float(
+            os
+            .environ
+            .get('MEDIA_PLAYER_POWER_SUPPLY_STATUS_SIGNAL_CAN_BE_RECEIVED')
+            .split(',')[1]
+        ),
+    ]
+
+    powered_on_wattages = [
+        float(
+            os
+            .environ
+            .get('MEDIA_PLAYER_POWER_SUPPLY_STATUS_POWERED_ON')
+            .split(',')[0]
+        ),
+        float(
+            os
+            .environ
+            .get('MEDIA_PLAYER_POWER_SUPPLY_STATUS_POWERED_ON')
+            .split(',')[1]
+        ),
+    ]
+
+    trouble_wattage = float(
+        os
+        .environ
+        .get('MEDIA_PLAYER_POWER_SUPPLY_STATUS_TROUBLE')
+    )
+
+    return MediaPlayerPowerConfigData(
+        unplugged_wattage,
+        powered_off_and_signal_can_be_received_wattages,
+        powered_on_wattages,
+        trouble_wattage,
+    )

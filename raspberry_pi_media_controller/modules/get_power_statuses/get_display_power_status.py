@@ -1,5 +1,9 @@
+from raspberry_pi_media_controller.data.display_power_config_data \
+    import DisplayPowerConfigData
 from raspberry_pi_media_controller.enums.display_power_status_enums \
     import DisplayPowerStatusEnum
+from raspberry_pi_media_controller.modules.config.get_display_power_config \
+    import get_display_power_config
 
 
 def get_display_power_status(wattages: list[float]) -> DisplayPowerStatusEnum:
@@ -12,21 +16,25 @@ def get_display_power_status(wattages: list[float]) -> DisplayPowerStatusEnum:
 
     previous_status: DisplayPowerStatusEnum | None = None
     current_status: DisplayPowerStatusEnum = DisplayPowerStatusEnum.GLITCHED
+    power_config: DisplayPowerConfigData = get_display_power_config()
 
     for wattage in wattages:
-        if wattage <= 0.4:
+        if wattage <= power_config.unplugged_wattage:
             current_status = DisplayPowerStatusEnum.UNPLUGGED
 
-        elif wattage >= 2.4 and wattage <= 3.0:
+        elif wattage >= power_config.powered_off_and_signal_can_not_be_received_wattages[0] \
+                and wattage <= power_config.powered_off_and_signal_can_not_be_received_wattages[1]:
             current_status = DisplayPowerStatusEnum.POWERED_OFF_AND_SIGNAL_CAN_NOT_BE_RECEIVED
 
-        elif wattage >= 17.0 and wattage <= 20.0:
+        elif wattage >= power_config.powered_off_and_signal_can_be_received_wattages[0] \
+                and wattage <= power_config.powered_off_and_signal_can_be_received_wattages[1]:
             current_status = DisplayPowerStatusEnum.POWERED_OFF_AND_SIGNAL_CAN_BE_RECEIVED
 
-        elif wattage >= 55.0 and wattage <= 160.0:
+        elif wattage >= power_config.powered_on_wattages[0] \
+                and wattage <= power_config.powered_on_wattages[1]:
             current_status = DisplayPowerStatusEnum.POWERED_ON
 
-        elif wattage > 160.0:
+        elif wattage >= power_config.trouble_wattage:
             return DisplayPowerStatusEnum.TROUBLE
 
         else:

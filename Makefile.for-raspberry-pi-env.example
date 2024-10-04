@@ -1,0 +1,13 @@
+up:
+	# Raspberry Pi 環境用 Makefile
+
+	# raspberry_pi_media_controller/.env が存在しない場合は raspberry_pi_media_controller/.env.example をコピーする
+	if [ ! -e raspberry_pi_media_controller/.env ]; then \
+		cp raspberry_pi_media_controller/.env.example raspberry_pi_media_controller/.env; \
+		echo "raspberry_pi_media_controller/.env を作成しました。"; \
+	fi
+
+	python -m venv myenv \
+	&& source ./myenv/bin/activate \
+	&& pip install -r requirements.txt \
+	&& pipenv install -d pytest

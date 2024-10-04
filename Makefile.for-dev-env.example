@@ -1,4 +1,6 @@
 up:
+	# 開発環境用 Makefile
+
 	# containers/.env が存在しない場合は containers/.env.example をコピーする
 	if [ ! -e containers/.env ]; then \
 		cp containers/.env.example containers/.env; \

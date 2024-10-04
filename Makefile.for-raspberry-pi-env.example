@@ -1,3 +1,5 @@
+SHELL := /bin/bash
+
 up:
 	# Raspberry Pi 環境用 Makefile
 

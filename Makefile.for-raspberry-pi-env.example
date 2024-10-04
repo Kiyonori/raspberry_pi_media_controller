@@ -13,3 +13,10 @@ up:
 	&& source ./myenv/bin/activate \
 	&& pip install -r requirements.txt \
 	&& pipenv install -d pytest
+
+	cd raspberry_pi_media_controller/external_scripts && \
+	if [ ! -e irrp.py ]; then \
+		wget https://abyz.me.uk/rpi/pigpio/code/irrp_py.zip; \
+		unzip irrp_py.zip; \
+		rm -f irrp_py.zip; \
+	fi

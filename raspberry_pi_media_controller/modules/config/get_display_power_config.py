@@ -55,7 +55,6 @@ def get_display_power_config() -> DisplayPowerConfigData:
 
     return DisplayPowerConfigData(
         unplugged_wattage,
-        powered_off_and_signal_can_not_be_received_wattages,
         powered_off_and_signal_can_be_received_wattages,
         powered_on_wattages,
         trouble_wattage,

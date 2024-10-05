@@ -12,6 +12,7 @@ class DisplayPowerStatusEnum(Enum):
     POWERED_OFF_AND_SIGNAL_CAN_BE_RECEIVED = 'POWERED_OFF_AND_SIGNAL_CAN_BE_RECEIVED'
     """ディスプレイの電源がOFFであり、赤外線信号の受信が可能です"""
 
+    # TODO この Enum は消すこと
     POWERED_OFF_AND_SIGNAL_CAN_NOT_BE_RECEIVED = 'POWERED_OFF_AND_SIGNAL_CAN_NOT_BE_RECEIVED'
     """ディスプレイの電源がOFFであり、赤外線信号の受信は出来ません"""
 

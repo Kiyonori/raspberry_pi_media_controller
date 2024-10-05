@@ -22,10 +22,6 @@ def get_display_power_status(wattages: list[float]) -> DisplayPowerStatusEnum:
         if wattage <= power_config.unplugged_wattage:
             current_status = DisplayPowerStatusEnum.UNPLUGGED
 
-        elif wattage >= power_config.powered_off_and_signal_can_not_be_received_wattages[0] \
-                and wattage <= power_config.powered_off_and_signal_can_not_be_received_wattages[1]:
-            current_status = DisplayPowerStatusEnum.POWERED_OFF_AND_SIGNAL_CAN_NOT_BE_RECEIVED
-
         elif wattage >= power_config.powered_off_and_signal_can_be_received_wattages[0] \
                 and wattage <= power_config.powered_off_and_signal_can_be_received_wattages[1]:
             current_status = DisplayPowerStatusEnum.POWERED_OFF_AND_SIGNAL_CAN_BE_RECEIVED

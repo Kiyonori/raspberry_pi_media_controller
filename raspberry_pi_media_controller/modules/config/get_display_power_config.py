@@ -17,21 +17,6 @@ def get_display_power_config() -> DisplayPowerConfigData:
         .get('DISPLAY_POWER_SUPPLY_STATUS_UNPLUGGED')
     )
 
-    powered_off_and_signal_can_not_be_received_wattages = [
-        float(
-            os
-            .environ
-            .get('DISPLAY_POWER_SUPPLY_STATUS_SIGNAL_CAN_NOT_BE_RECEIVED')
-            .split(',')[0]
-        ),
-        float(
-            os
-            .environ
-            .get('DISPLAY_POWER_SUPPLY_STATUS_SIGNAL_CAN_NOT_BE_RECEIVED')
-            .split(',')[1]
-        ),
-    ]
-
     powered_off_and_signal_can_be_received_wattages = [
         float(
             os
@@ -70,7 +55,6 @@ def get_display_power_config() -> DisplayPowerConfigData:
 
     return DisplayPowerConfigData(
         unplugged_wattage,
-        powered_off_and_signal_can_not_be_received_wattages,
         powered_off_and_signal_can_be_received_wattages,
         powered_on_wattages,
         trouble_wattage,

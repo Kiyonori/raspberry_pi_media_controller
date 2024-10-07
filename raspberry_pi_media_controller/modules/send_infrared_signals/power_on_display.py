@@ -25,6 +25,3 @@ def power_on_display() -> None:
         return
 
     toggle_display_power_status()
-
-
-power_on_display()

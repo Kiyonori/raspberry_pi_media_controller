@@ -47,3 +47,18 @@ def test_power_off_display_メソッドは_ディスプレイがすでに終了�
 ):
     power_off_display()
     mock_toggle_display_power_status.assert_not_called()
+
+
+@patch(
+    target='raspberry_pi_media_controller.modules.send_infrared_signals.power_off_display.toggle_display_power_status',
+)
+@patch(
+    target='raspberry_pi_media_controller.modules.send_infrared_signals.power_off_display.get_wattages_on_display',
+    return_value=[180.0, 190.0, 222.2, 199.9],
+)
+def test_power_off_display_メソッドは_ディスプレイが異常に電力を消費している場合_内部からtoggle_display_power_statusメソッドは1度も呼ばれないこと(
+        mock_get_wattages_on_display,
+        mock_toggle_display_power_status,
+):
+    power_off_display()
+    mock_toggle_display_power_status.assert_not_called()

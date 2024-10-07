@@ -32,3 +32,19 @@ def test_power_on_display_メソッドは_ディスプレイに電源が供給�
 ):
     power_on_display()
     mock_toggle_display_power_status.assert_not_called()
+
+
+@patch(
+    target='raspberry_pi_media_controller.power_on_display.toggle_display_power_status',
+)
+@patch(
+    target='raspberry_pi_media_controller.power_on_display.get_wattages_on_display',
+    return_value=[55.0, 160.0, 60.6, 70.7],
+)
+def test_power_on_display_メソッドは_ディスプレイがすでに稼働中の場合は_内部からtoggle_display_power_statusメソッドは1度も呼ばれないこと(
+        mock_get_wattages_on_display,
+        mock_toggle_display_power_status,
+
+):
+    power_on_display()
+    mock_toggle_display_power_status.assert_not_called()

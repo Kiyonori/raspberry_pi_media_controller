@@ -48,7 +48,7 @@ def test_get_media_player_power_status_は意図したとおり_POWERED_OFF_AND_
         [56.6, 56.6, 56.6, 56.6],
     ]
 )
-def test_get_display_power_status_は意図したとおり_POWERED_ON_を返すこと(
+def test_get_media_player_power_status_は意図したとおり_POWERED_ON_を返すこと(
         wattages: list[float],
 ):
     result = get_media_player_power_status(wattages)
@@ -63,7 +63,7 @@ def test_get_display_power_status_は意図したとおり_POWERED_ON_を返す�
         [0.3, 200.0, 0.4, 18.0],
     ]
 )
-def test_get_display_power_status_は意図したとおり_TROUBLE_を返すこと(
+def test_get_media_player_power_status_は意図したとおり_TROUBLE_を返すこと(
         wattages: list[float],
 ):
     result = get_media_player_power_status(wattages)
@@ -75,11 +75,11 @@ def test_get_display_power_status_は意図したとおり_TROUBLE_を返すこ�
     "wattages",
     [
         [0.4, 2.4, 2.4, 2.4],
-        [3.0, 17.0, 17.0, 17.0],
-        [20.0, 23.4, 60.0, 12.3],
+        [3.0, 23.4, 2.4, 56.7],
+        [23.4, 56.8, 23.4, 56.8],
     ]
 )
-def test_get_display_power_status_は意図したとおり_GLITCHED_を返すこと(
+def test_get_media_player_power_status_は意図したとおり_GLITCHED_を返すこと(
         wattages: list[float],
 ):
     result = get_media_player_power_status(wattages)

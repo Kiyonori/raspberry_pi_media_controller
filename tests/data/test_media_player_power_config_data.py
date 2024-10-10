@@ -8,6 +8,8 @@ def test_MediaPlayerPowerConfigData_はData_Transfer_Objectとして機能する
         powered_off_and_signal_can_be_received_wattages=[1.5, 1.6],
         powered_on_wattages=[12.3, 34.5],
         trouble_wattage=80,
+        handling_maximum_number_of_attempts=7,
+        handling_waiting_seconds=8,
     )
 
     assert isinstance(
@@ -19,3 +21,5 @@ def test_MediaPlayerPowerConfigData_はData_Transfer_Objectとして機能する
     assert dto.powered_off_and_signal_can_be_received_wattages == [1.5, 1.6]
     assert dto.powered_on_wattages == [12.3, 34.5]
     assert dto.trouble_wattage == 80
+    assert dto.handling_maximum_number_of_attempts == 7
+    assert dto.handling_waiting_seconds == 8

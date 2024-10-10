@@ -53,9 +53,23 @@ def get_media_player_power_config():
         .get('MEDIA_PLAYER_POWER_SUPPLY_STATUS_TROUBLE')
     )
 
+    handling_maximum_number_of_attempts = int(
+        os
+        .environ
+        .get('MEDIA_PLAYER_HANDLING_MAXIMUM_NUMBER_OF_ATTEMPTS')
+    )
+
+    handling_waiting_seconds = int(
+        os
+        .environ
+        .get('MEDIA_PLAYER_HANDLING_WAITING_SECONDS')
+    )
+
     return MediaPlayerPowerConfigData(
         unplugged_wattage,
         powered_off_and_signal_can_be_received_wattages,
         powered_on_wattages,
         trouble_wattage,
+        handling_maximum_number_of_attempts,
+        handling_waiting_seconds,
     )

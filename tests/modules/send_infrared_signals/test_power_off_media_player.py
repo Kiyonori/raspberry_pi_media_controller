@@ -47,3 +47,18 @@ def test_power_off_media_player_メソッドは_メディアプレイヤーが�
 ):
     power_off_media_player()
     mock_toggle_media_player_power_status.assert_not_called()
+
+
+@patch(
+    target='raspberry_pi_media_controller.modules.send_infrared_signals.power_off_media_player.toggle_media_player_power_status',
+)
+@patch(
+    target='raspberry_pi_media_controller.modules.send_infrared_signals.power_off_media_player.get_wattages_on_media_player',
+    return_value=[23.4, 3.0, 80.0, 0.1],
+)
+def test_power_off_media_player_メソッドは_メディアプレイヤーが異常に電力を消費している場合_内部からtoggle_media_player_power_statusメソッドは1度も呼ばれないこと(
+        mock_get_wattages_on_media_player,
+        mock_toggle_media_player_power_status,
+):
+    power_off_media_player()
+    mock_toggle_media_player_power_status.assert_not_called()

@@ -26,13 +26,12 @@ def main():
         wattages: list[float] = get_wattages_on_display()
         power_status = get_display_power_status(wattages)
 
-        match power_status:
-            case (
-                DisplayPowerStatusEnum.POWERED_ON,
-                DisplayPowerStatusEnum.UNPLUGGED,
-                DisplayPowerStatusEnum.TROUBLE
-            ):
-                break
+        if power_status in {
+            DisplayPowerStatusEnum.POWERED_ON,
+            DisplayPowerStatusEnum.UNPLUGGED,
+            DisplayPowerStatusEnum.TROUBLE,
+        }:
+            break
 
         if attempt_count > config.handling_maximum_number_of_attempts:
             break

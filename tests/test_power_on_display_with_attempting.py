@@ -22,8 +22,8 @@ def test_power_on_display_with_attempting_はディスプレイの電源状態�
                     'raspberry_pi_media_controller.power_on_display_with_attempting.get_display_power_status'
             ) as mock_get_display_power_status:
                 mock_get_display_power_status.side_effect = [
-                    DisplayPowerStatusEnum.POWERED_OFF_AND_SIGNAL_CAN_BE_RECEIVED,
-                    DisplayPowerStatusEnum.POWERED_ON,
+                    DisplayPowerStatusEnum.POWERED_OFF_AND_SIGNAL_CAN_BE_RECEIVED, # ℹ️
+                    DisplayPowerStatusEnum.POWERED_ON,                             # ℹ️
                 ]
 
                 main()
@@ -49,7 +49,7 @@ def test_power_on_display_with_attempting_はディスプレイの電源状態�
                     'raspberry_pi_media_controller.power_on_display_with_attempting.get_display_power_status'
             ) as mock_get_display_power_status:
                 mock_get_display_power_status.side_effect = [
-                    DisplayPowerStatusEnum.POWERED_ON,
+                    DisplayPowerStatusEnum.POWERED_ON, # ℹ️
                 ]
 
                 main()
@@ -75,7 +75,7 @@ def test_power_on_display_with_attempting_はディスプレイに電源が接�
                     'raspberry_pi_media_controller.power_on_display_with_attempting.get_display_power_status'
             ) as mock_get_display_power_status:
                 mock_get_display_power_status.side_effect = [
-                    DisplayPowerStatusEnum.UNPLUGGED,
+                    DisplayPowerStatusEnum.UNPLUGGED, # ℹ️
                 ]
 
                 main()
@@ -101,7 +101,7 @@ def test_power_on_display_with_attempting_はディスプレイの消費電力�
                     'raspberry_pi_media_controller.power_on_display_with_attempting.get_display_power_status'
             ) as mock_get_display_power_status:
                 mock_get_display_power_status.side_effect = [
-                    DisplayPowerStatusEnum.TROUBLE,
+                    DisplayPowerStatusEnum.TROUBLE, # ℹ️
                 ]
 
                 main()
@@ -127,10 +127,10 @@ def test_power_on_display_with_attempting_はディスプレイの電源状態�
                     'raspberry_pi_media_controller.power_on_display_with_attempting.get_display_power_status'
             ) as mock_get_display_power_status:
                 mock_get_display_power_status.side_effect = [
-                    DisplayPowerStatusEnum.POWERED_OFF_AND_SIGNAL_CAN_BE_RECEIVED,
-                    DisplayPowerStatusEnum.POWERED_OFF_AND_SIGNAL_CAN_BE_RECEIVED,
-                    DisplayPowerStatusEnum.POWERED_OFF_AND_SIGNAL_CAN_BE_RECEIVED,
-                    DisplayPowerStatusEnum.POWERED_ON,
+                    DisplayPowerStatusEnum.POWERED_OFF_AND_SIGNAL_CAN_BE_RECEIVED, # ℹ️
+                    DisplayPowerStatusEnum.POWERED_OFF_AND_SIGNAL_CAN_BE_RECEIVED, # ℹ️
+                    DisplayPowerStatusEnum.POWERED_OFF_AND_SIGNAL_CAN_BE_RECEIVED, # ℹ️
+                    DisplayPowerStatusEnum.POWERED_ON,                             # ℹ️
                 ]
 
                 main()
@@ -155,6 +155,7 @@ def test_power_on_display_with_attempting_はディスプレイの電源状態�
             with patch(
                     'raspberry_pi_media_controller.power_on_display_with_attempting.get_display_power_status'
             ) as mock_get_display_power_status:
+                # ℹ️
                 mock_get_display_power_status.return_value = DisplayPowerStatusEnum.POWERED_OFF_AND_SIGNAL_CAN_BE_RECEIVED
 
                 main()

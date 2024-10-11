@@ -33,7 +33,7 @@ def main():
         }:
             break
 
-        if attempt_count > config.handling_maximum_number_of_attempts:
+        if attempt_count > config.handling_maximum_number_of_attempts - 1:
             break
 
         toggle_display_power_status()

@@ -1,6 +1,6 @@
 import os
+from raspberry_pi_media_controller.modules.my_load_dotenv import my_load_dotenv
 import subprocess
-from dotenv import load_dotenv
 
 
 def toggle_display_power_status() -> None:
@@ -10,7 +10,7 @@ def toggle_display_power_status() -> None:
     ただ、送信するだけのメソッドです
     """
 
-    load_dotenv()
+    my_load_dotenv()
 
     external_executable: str = os.environ.get('EXTERNAL_SCRIPT_PREFIX')
     gpio: str = os.environ.get('DISPLAY_CONTROL_INFRARED_LED_GPIO_PORT')

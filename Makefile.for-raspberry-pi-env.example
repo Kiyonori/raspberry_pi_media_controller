@@ -9,6 +9,12 @@ up:
 		echo "raspberry_pi_media_controller/.env を作成しました。"; \
 	fi
 
+	# raspberry_pi_media_controller/.env.testing が存在しない場合は raspberry_pi_media_controller/.env.testing.example をコピーする
+	if [ ! -e raspberry_pi_media_controller/.env.testing ]; then \
+		cp raspberry_pi_media_controller/.env.testing.example raspberry_pi_media_controller/.env.testing; \
+		echo "raspberry_pi_media_controller/.env.testing を作成しました。"; \
+	fi
+
 	python -m venv myenv \
 	&& source ./myenv/bin/activate \
 	&& pip install -r requirements.txt \

@@ -1,7 +1,7 @@
 import os
-from dotenv import load_dotenv
 from raspberry_pi_media_controller.modules.analog_digital_converter.get_ads import get_ads
 from raspberry_pi_media_controller.modules.analog_digital_converter.get_wattage import get_wattage
+from raspberry_pi_media_controller.modules.my_load_dotenv import my_load_dotenv
 
 
 def get_wattages_on_media_player() -> list[float]:
@@ -11,7 +11,7 @@ def get_wattages_on_media_player() -> list[float]:
     :rtype: list[float] N秒間測定した消費電力
     """
 
-    load_dotenv()
+    my_load_dotenv()
 
     pin1: int = int(
         os.environ.get('MEDIA_PLAYER_AMMETER_PIN_PAIR').split(',')[0]

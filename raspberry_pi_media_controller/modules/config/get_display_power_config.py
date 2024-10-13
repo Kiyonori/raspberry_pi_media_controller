@@ -1,7 +1,8 @@
 import os
-from dotenv import load_dotenv
 from raspberry_pi_media_controller.data.display_power_config_data \
     import DisplayPowerConfigData
+from raspberry_pi_media_controller.modules.my_load_dotenv \
+    import my_load_dotenv
 
 
 def get_display_power_config() -> DisplayPowerConfigData:
@@ -9,7 +10,7 @@ def get_display_power_config() -> DisplayPowerConfigData:
     ディスプレイの消費電力に関する設定値を参照する
     """
 
-    load_dotenv()
+    my_load_dotenv()
 
     unplugged_wattage = float(
         os

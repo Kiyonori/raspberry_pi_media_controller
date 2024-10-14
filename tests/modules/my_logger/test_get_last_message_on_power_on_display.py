@@ -24,3 +24,24 @@ def test_get_last_message_on_power_on_display_は試行回数に関係なく_電
     )
 
     assert message == 'The display power plug is unplugged.'
+
+
+@pytest.mark.parametrize(
+    "attempt_count, power_status",
+    [
+        (0, DisplayPowerStatusEnum.TROUBLE),
+        (1, DisplayPowerStatusEnum.TROUBLE),
+        (9, DisplayPowerStatusEnum.TROUBLE),
+        (10, DisplayPowerStatusEnum.TROUBLE),
+    ],
+)
+def test_get_last_message_on_power_on_display_は試行回数に関係なく_消費電力の異常を検知した場合のメッセージは想定どおりであること(
+        attempt_count: int,
+        power_status: DisplayPowerStatusEnum,
+):
+    message: str = get_last_message_on_power_on_display(
+        attempt_count,
+        power_status,
+    )
+
+    assert message == 'The display power consumption is excessive.'

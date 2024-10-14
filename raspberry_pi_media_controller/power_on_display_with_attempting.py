@@ -9,6 +9,8 @@ from raspberry_pi_media_controller.modules.config.get_display_power_config \
     import get_display_power_config
 from raspberry_pi_media_controller.modules.get_power_statuses.get_display_power_status \
     import get_display_power_status
+from raspberry_pi_media_controller.modules.my_logger.get_last_message_on_power_on_display \
+    import get_last_message_on_power_on_display
 from raspberry_pi_media_controller.modules.my_logger.initialize_logger \
     import initialize_logger
 from raspberry_pi_media_controller.modules.my_logger.make_log_directory \
@@ -50,24 +52,13 @@ def main():
         sleep(config.handling_waiting_seconds)
         attempt_count += 1
 
-    # TODO ↓ リファクタリング ↓
-    if 0 == attempt_count and power_status is DisplayPowerStatusEnum.POWERED_ON:
-        logging.info('The display is already powered on.')
+    last_message: str = get_last_message_on_power_on_display(
+        attempt_count,
+        power_status,
+    )
 
-    if power_status is DisplayPowerStatusEnum.UNPLUGGED:
-        logging.info('The display power plug is unplugged.')
+    logging.info(last_message)
 
-    if power_status is DisplayPowerStatusEnum.TROUBLE:
-        logging.info('The display power consumption is excessive.')
-
-    if 1 <= attempt_count \
-            and power_status is DisplayPowerStatusEnum.POWERED_ON:
-        logging.info('The display is powered on now.')
-
-    if attempt_count > config.handling_maximum_number_of_attempts - 1 \
-            and power_status is not DisplayPowerStatusEnum.POWERED_ON:
-        logging.info('The system could not turn on the display.')
-    # TODO ↑ リファクタリング ↑
 
 if __name__ == "__main__":
     main()

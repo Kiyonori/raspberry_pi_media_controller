@@ -46,7 +46,13 @@ def main():
         if attempt_count > config.handling_maximum_number_of_attempts - 1:
             break
 
-        logging.info('Attempt %d times: Turn on the power to the display.' % int(attempt_count + 1))
+        logging.info(
+            'Attempt %d times: Turn on the power to the display. Wattages: %s' %
+            (
+                int(attempt_count + 1),
+                ','.join(map(str, wattages))
+            )
+        )
 
         toggle_display_power_status()
         sleep(config.handling_waiting_seconds)
@@ -57,7 +63,7 @@ def main():
         power_status,
     )
 
-    logging.info(last_message)
+    logging.info(last_message + ' Wattages: ' + ','.join(map(str, wattages)))
 
 
 if __name__ == "__main__":

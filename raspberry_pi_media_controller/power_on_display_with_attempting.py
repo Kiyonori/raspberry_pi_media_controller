@@ -1,4 +1,5 @@
 import logging
+
 from raspberry_pi_media_controller.data.display_power_config_data \
     import DisplayPowerConfigData
 from raspberry_pi_media_controller.enums.display_power_status_enums \
@@ -9,6 +10,8 @@ from raspberry_pi_media_controller.modules.config.get_display_power_config \
     import get_display_power_config
 from raspberry_pi_media_controller.modules.get_power_statuses.get_display_power_status \
     import get_display_power_status
+from raspberry_pi_media_controller.modules.my_logger.flatten_wattages \
+    import flatten_wattages
 from raspberry_pi_media_controller.modules.my_logger.get_last_message_on_power_on_display \
     import get_last_message_on_power_on_display
 from raspberry_pi_media_controller.modules.my_logger.initialize_logger \
@@ -46,7 +49,13 @@ def main():
         if attempt_count > config.handling_maximum_number_of_attempts - 1:
             break
 
-        logging.info('Attempt %d times: Turn on the power to the display.' % int(attempt_count + 1))
+        logging.info(
+            'Attempt %d times: Turn on the power to the display. Wattages: %s' %
+            (
+                int(attempt_count + 1),
+                flatten_wattages(wattages),
+            )
+        )
 
         toggle_display_power_status()
         sleep(config.handling_waiting_seconds)
@@ -57,7 +66,11 @@ def main():
         power_status,
     )
 
-    logging.info(last_message)
+    logging.info(
+        last_message + \
+        ' Wattages: ' + \
+        flatten_wattages(wattages)
+    )
 
 
 if __name__ == "__main__":

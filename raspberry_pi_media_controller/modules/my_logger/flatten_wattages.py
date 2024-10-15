@@ -21,4 +21,4 @@ def flatten_wattages(
         num = math.floor(wattage * 10 ** number_of_digits) / 10 ** number_of_digits
         result.append(num)
 
-    return ','.join(map(str, result))
+    return ', '.join(map(str, result))

@@ -24,3 +24,24 @@ def test_get_last_message_on_power_off_media_player_は試行回数に関係な�
     )
 
     assert message == 'The media player power plug is unplugged.'
+
+
+@pytest.mark.parametrize(
+    "attempt_count, power_status",
+    [
+        (0, MediaPlayerPowerStatusEnum.TROUBLE),
+        (1, MediaPlayerPowerStatusEnum.TROUBLE),
+        (9, MediaPlayerPowerStatusEnum.TROUBLE),
+        (10, MediaPlayerPowerStatusEnum.TROUBLE),
+    ],
+)
+def test_get_last_message_on_power_off_media_player_は試行回数に関係なく_消費電力の異常を検知した場合のメッセージは想定どおりであること(
+        attempt_count: int,
+        power_status: MediaPlayerPowerStatusEnum,
+):
+    message: str = get_last_message_on_power_off_media_player(
+        attempt_count,
+        power_status,
+    )
+
+    assert message == 'The media player power consumption is excessive.'

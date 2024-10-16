@@ -54,3 +54,24 @@ def test_get_last_message_on_power_off_media_player_は電源終了しようと�
     )
 
     assert message == 'The media player is already powered off.'
+
+
+@pytest.mark.parametrize(
+    "attempt_count, power_status",
+    [
+        (1, MediaPlayerPowerStatusEnum.POWERED_OFF_AND_SIGNAL_CAN_BE_RECEIVED),
+        (2, MediaPlayerPowerStatusEnum.POWERED_OFF_AND_SIGNAL_CAN_BE_RECEIVED),
+        (9, MediaPlayerPowerStatusEnum.POWERED_OFF_AND_SIGNAL_CAN_BE_RECEIVED),
+        (10, MediaPlayerPowerStatusEnum.POWERED_OFF_AND_SIGNAL_CAN_BE_RECEIVED),
+    ],
+)
+def test_get_last_message_on_power_off_media_player_試行1回目以上_試行10回目以下で_電源が終了した場合_メッセージは想定どおりであること(
+        attempt_count: int,
+        power_status: MediaPlayerPowerStatusEnum,
+):
+    message: str = get_last_message_on_power_off_media_player(
+        attempt_count,
+        power_status,
+    )
+
+    assert message == 'The media player is powered off now.'

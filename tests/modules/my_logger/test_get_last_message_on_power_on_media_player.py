@@ -45,3 +45,12 @@ def test_get_last_message_on_power_on_media_player_は試行回数に関係な�
     )
 
     assert message == 'The media player power consumption is excessive.'
+
+
+def test_get_last_message_on_power_on_media_player_は電源投入しようとした初回に_すでに電源が着いていた場合のメッセージは想定どおりであること():
+    message: str = get_last_message_on_power_on_media_player(
+        attempt_count=0,
+        power_status=MediaPlayerPowerStatusEnum.POWERED_ON,
+    )
+
+    assert message == 'The media player is already powered on.'

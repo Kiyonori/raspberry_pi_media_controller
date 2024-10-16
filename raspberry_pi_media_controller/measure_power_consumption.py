@@ -1,8 +1,8 @@
 import adafruit_ads1x15.ads1115 as ads1115
-import analog_digital_converter.GetADS as GetADS
-import analog_digital_converter.GetWattage as GetWattage
-import sys
 from datetime import datetime
+from raspberry_pi_media_controller.modules.analog_digital_converter.get_ads import get_ads
+from raspberry_pi_media_controller.modules.analog_digital_converter.get_wattage import get_wattage
+import sys
 
 
 def main() -> None:
@@ -27,11 +27,11 @@ def main() -> None:
         case _:
             exit(1)
 
-    ads = GetADS.execute()
+    ads = get_ads()
 
     try:
         while True:
-            wattage: float = GetWattage.execute(
+            wattage: float = get_wattage(
                 ads,
                 analog_pin_1,
                 analog_pin_2,

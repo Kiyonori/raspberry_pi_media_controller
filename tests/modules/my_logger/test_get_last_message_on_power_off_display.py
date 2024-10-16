@@ -75,3 +75,21 @@ def test_get_last_message_on_power_off_display_試行1回目以上_試行10回�
     )
 
     assert message == 'The display is powered off now.'
+
+
+@pytest.mark.parametrize(
+    "attempt_count",
+    [
+        11,
+        12,
+    ],
+)
+def test_get_last_message_on_power_off_display_試行回数11回目以上はありえないので_電源が終了しなかった旨のメッセージが返ってくること(
+        attempt_count: int,
+):
+    message: str = get_last_message_on_power_off_display(
+        attempt_count,
+        DisplayPowerStatusEnum.POWERED_ON,
+    )
+
+    assert message == 'The system could not turn off the display.'

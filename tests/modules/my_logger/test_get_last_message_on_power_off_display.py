@@ -54,3 +54,24 @@ def test_get_last_message_on_power_off_display_は電源終了しようとした
     )
 
     assert message == 'The display is already powered off.'
+
+
+@pytest.mark.parametrize(
+    "attempt_count, power_status",
+    [
+        (1, DisplayPowerStatusEnum.POWERED_OFF_AND_SIGNAL_CAN_BE_RECEIVED),
+        (2, DisplayPowerStatusEnum.POWERED_OFF_AND_SIGNAL_CAN_BE_RECEIVED),
+        (9, DisplayPowerStatusEnum.POWERED_OFF_AND_SIGNAL_CAN_BE_RECEIVED),
+        (10, DisplayPowerStatusEnum.POWERED_OFF_AND_SIGNAL_CAN_BE_RECEIVED),
+    ],
+)
+def test_get_last_message_on_power_off_display_試行1回目以上_試行10回目以下で_電源が終了した場合_メッセージは想定どおりであること(
+        attempt_count: int,
+        power_status: DisplayPowerStatusEnum,
+):
+    message: str = get_last_message_on_power_off_display(
+        attempt_count,
+        power_status,
+    )
+
+    assert message == 'The display is powered off now.'

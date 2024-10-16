@@ -45,3 +45,12 @@ def test_get_last_message_on_power_off_display_は試行回数に関係なく_�
     )
 
     assert message == 'The display power consumption is excessive.'
+
+
+def test_get_last_message_on_power_off_display_は電源終了しようとした初回に_すでに電源が終了していた場合のメッセージは想定どおりであること():
+    message: str = get_last_message_on_power_off_display(
+        attempt_count=0,
+        power_status=DisplayPowerStatusEnum.POWERED_OFF_AND_SIGNAL_CAN_BE_RECEIVED,
+    )
+
+    assert message == 'The display is already powered off.'

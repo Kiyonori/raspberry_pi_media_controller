@@ -75,3 +75,21 @@ def test_get_last_message_on_power_off_media_player_試行1回目以上_試行10
     )
 
     assert message == 'The media player is powered off now.'
+
+
+@pytest.mark.parametrize(
+    "attempt_count",
+    [
+        11,
+        12,
+    ],
+)
+def test_get_last_message_on_power_off_media_player_試行回数11回目以上はありえないので_電源が終了しなかった旨のメッセージが返ってくること(
+        attempt_count: int,
+):
+    message: str = get_last_message_on_power_off_media_player(
+        attempt_count,
+        MediaPlayerPowerStatusEnum.POWERED_ON,
+    )
+
+    assert message == 'The system could not turn off the media player.'

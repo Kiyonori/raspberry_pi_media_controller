@@ -31,7 +31,7 @@ def main():
     power_status: MediaPlayerPowerStatusEnum
     log_dir: str = make_log_directory()
     initialize_logger(log_dir)
-    logging.info('The system will turn on the display.')
+    logging.info('The system will turn on the media player.')
 
     while True:
         wattages: list[float] = get_wattages_on_media_player()
